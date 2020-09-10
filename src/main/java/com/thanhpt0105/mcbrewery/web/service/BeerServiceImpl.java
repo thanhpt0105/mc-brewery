@@ -1,6 +1,7 @@
 package com.thanhpt0105.mcbrewery.web.service;
 
 import com.thanhpt0105.mcbrewery.web.model.BeerDto;
+import com.thanhpt0105.mcbrewery.web.model.BeerStyleEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.UUID;
 public class BeerServiceImpl implements BeerService {
     @Override
     public BeerDto getBeerById(UUID id) {
-        return BeerDto.builder().id(id).beerName("Tiger").beerStyle("Normal").build();
+        return BeerDto.builder().id(id).beerName("Tiger").beerStyle(BeerStyleEnum.ALE).build();
     }
 
     @Override
