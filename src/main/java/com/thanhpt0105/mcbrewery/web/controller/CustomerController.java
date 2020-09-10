@@ -2,12 +2,10 @@ package com.thanhpt0105.mcbrewery.web.controller;
 
 import com.thanhpt0105.mcbrewery.web.model.CustomerDto;
 import com.thanhpt0105.mcbrewery.web.service.CustomerService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -25,5 +23,28 @@ public class CustomerController {
         return new ResponseEntity<>(service.getCustomerById(id),  HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity handlePost(@RequestBody CustomerDto customerDto) {
+        CustomerDto savedCustomer = service.saveNewCustomer(customerDto);
+
+        HttpHeaders headers = new HttpHeaders();
+        //todo add hostname
+        headers.add("Location", "/api/v1/customer/" + savedCustomer.getId().toString());
+
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity handleUpdate(@PathVariable UUID id, @RequestBody CustomerDto customerDto) {
+        service.updateCustomer(id, customerDto);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteBeer(@PathVariable UUID id) {
+        service.deleteCustomer(id);
+    }
 
 }

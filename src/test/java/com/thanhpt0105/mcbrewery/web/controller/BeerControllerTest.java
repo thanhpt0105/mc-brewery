@@ -84,4 +84,11 @@ class BeerControllerTest {
                 .andExpect(status().isNoContent());
         verify(service).updateBeer(any(),any());
     }
+
+    @Test
+    void handleDelete() throws Exception {
+        mockMvc.perform(delete("/api/v1/beer/" + UUID.randomUUID().toString()))
+                .andExpect(status().isNoContent());
+        verify(service).deleteBeer(any());
+    }
 }
