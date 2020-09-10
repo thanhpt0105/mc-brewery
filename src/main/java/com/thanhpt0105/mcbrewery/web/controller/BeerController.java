@@ -40,6 +40,6 @@ public class BeerController {
     public ResponseEntity handleUpdate(@PathVariable UUID id, BeerDto beerDto) {
         beerService.updateBeer(id, beerDto);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
