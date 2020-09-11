@@ -5,6 +5,7 @@ import com.thanhpt0105.mcbrewery.web.service.BeerService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -26,7 +27,7 @@ public class BeerController {
     }
 
     @PostMapping
-    public ResponseEntity handlePost(@RequestBody BeerDto beerDto) {
+    public ResponseEntity handlePost(@RequestBody @Validated BeerDto beerDto) {
         BeerDto savedBeerDto = beerService.saveNewBeer(beerDto);
 
         HttpHeaders headers = new HttpHeaders();
@@ -37,7 +38,7 @@ public class BeerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity handleUpdate(@PathVariable UUID id, @RequestBody BeerDto beerDto) {
+    public ResponseEntity handleUpdate(@PathVariable UUID id, @RequestBody @Validated BeerDto beerDto) {
         beerService.updateBeer(id, beerDto);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

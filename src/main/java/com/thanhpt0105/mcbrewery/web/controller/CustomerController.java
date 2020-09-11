@@ -5,6 +5,7 @@ import com.thanhpt0105.mcbrewery.web.service.CustomerService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -24,7 +25,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity handlePost(@RequestBody CustomerDto customerDto) {
+    public ResponseEntity handlePost(@RequestBody @Validated CustomerDto customerDto) {
         CustomerDto savedCustomer = service.saveNewCustomer(customerDto);
 
         HttpHeaders headers = new HttpHeaders();
@@ -35,7 +36,7 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity handleUpdate(@PathVariable UUID id, @RequestBody CustomerDto customerDto) {
+    public ResponseEntity handleUpdate(@PathVariable UUID id, @RequestBody @Validated CustomerDto customerDto) {
         service.updateCustomer(id, customerDto);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
