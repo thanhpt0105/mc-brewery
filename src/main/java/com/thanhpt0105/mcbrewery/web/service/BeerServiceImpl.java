@@ -24,8 +24,9 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public void updateBeer(UUID id, BeerDto beerDto) {
+    public BeerDto updateBeer(UUID id, BeerDto beerDto) {
         //todo
+        return beerDto;
     }
 
     @Override

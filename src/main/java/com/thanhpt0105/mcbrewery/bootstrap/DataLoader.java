@@ -27,16 +27,16 @@ public class DataLoader implements CommandLineRunner {
         if (beerRepository.count() == 0) {
             beerRepository.save(Beer.builder()
                     .id(UUID.randomUUID())
-                    .name("Tiger")
-                    .style(BeerStyleEnum.ALE.toString())
+                    .beerName("Tiger")
+                    .beerStyle(BeerStyleEnum.ALE.toString())
                     .minOnHand(12)
                     .price(new BigDecimal("10.0"))
                     .build());
 
             beerRepository.save(Beer.builder()
                     .id(UUID.randomUUID())
-                    .name("Saigon")
-                    .style(BeerStyleEnum.GOSE.toString())
+                    .beerName("Saigon")
+                    .beerStyle(BeerStyleEnum.GOSE.toString())
                     .minOnHand(10)
                     .price(new BigDecimal("12.0"))
                     .build());
