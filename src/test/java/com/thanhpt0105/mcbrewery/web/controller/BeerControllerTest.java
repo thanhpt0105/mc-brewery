@@ -1,6 +1,7 @@
 package com.thanhpt0105.mcbrewery.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.thanhpt0105.mcbrewery.bootstrap.DataLoader;
 import com.thanhpt0105.mcbrewery.web.model.BeerDto;
 import com.thanhpt0105.mcbrewery.web.model.BeerStyleEnum;
 import com.thanhpt0105.mcbrewery.web.service.BeerService;
@@ -45,7 +46,7 @@ class BeerControllerTest {
                 .beerName("My Beer")
                 .beerStyle(BeerStyleEnum.ALE)
                 .price(new BigDecimal("2.99"))
-                .upc(10000L)
+                .upc(DataLoader.BEER_1_UPC)
                 .build();
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
         objectMapper = new ObjectMapper();
