@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.thanhpt0105</groupId>
-	<artifactId>mc-brewery</artifactId>
+	<artifactId>mc-beer-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mc-brewery</name>
-	<description>Beer work service</description>
+	<name>mc-beer-service</name>
+	<description>Beer service</description>
 
 	<properties>
 		<java.version>11</java.version>
