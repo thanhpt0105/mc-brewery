@@ -13,7 +13,8 @@ public interface BeerService {
 
     BeerPagedList listBeers(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest, Boolean showInventoryOnHand);
 
-    BeerDto getBeerById(UUID id);
+    BeerDto getBeerById(UUID id, Boolean showInventoryOnHand);
+
     BeerDto saveNewBeer(BeerDto beerDto);
     BeerDto updateBeer(UUID id, BeerDto beerDto);
     void deleteBeer(UUID id);

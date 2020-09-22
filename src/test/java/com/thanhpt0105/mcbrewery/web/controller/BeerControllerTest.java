@@ -54,7 +54,7 @@ class BeerControllerTest {
 
     @Test
     void getBeer() throws Exception {
-        when(service.getBeerById(any())).thenReturn(validBeer);
+        when(service.getBeerById(any(), any())).thenReturn(validBeer);
 
         mockMvc.perform(get("/api/v1/beer/" + validBeer.getId().toString()))
                 .andExpect(status().isOk())
