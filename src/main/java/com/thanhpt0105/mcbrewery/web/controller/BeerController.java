@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/beer")
+@RequestMapping("/api/v1/")
 @RestController
 public class BeerController {
 
@@ -24,7 +24,7 @@ public class BeerController {
 
     private final BeerService beerService;
 
-    @GetMapping(produces = { "application/json" })
+    @GetMapping(produces = { "application/json" }, path = "beer")
     public ResponseEntity<BeerPagedList> listBeers(@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
                                                    @RequestParam(value = "pageSize", required = false) Integer pageSize,
                                                    @RequestParam(value = "beerName", required = false) String beerName,
@@ -48,7 +48,7 @@ public class BeerController {
         return new ResponseEntity<>(beerList, HttpStatus.OK);
     }
 
-    @GetMapping("/{beerId}")
+    @GetMapping("/beer/{beerId}")
     public ResponseEntity<BeerDto> getBeer(@PathVariable UUID beerId, @RequestParam(value = "showInventoryOnHand", required = false) Boolean showInventoryOnHand) {
         return new ResponseEntity<>(beerService.getBeerById(beerId, showInventoryOnHand != null && showInventoryOnHand), HttpStatus.OK);
     }
@@ -64,15 +64,20 @@ public class BeerController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("beer/{id}")
     public ResponseEntity updateBeerById(@PathVariable UUID id, @RequestBody @Validated BeerDto beerDto) {
         BeerDto updatedBeer = beerService.updateBeer(id, beerDto);
         return new ResponseEntity<>(updatedBeer, HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("beer/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBeer(@PathVariable UUID id) {
         beerService.deleteBeer(id);
+    }
+
+    @GetMapping("beerUpc/{upc}")
+    public ResponseEntity<BeerDto> getBeerByUpc(@PathVariable String upc) {
+        return new ResponseEntity<>(beerService.getBeerByUpc(upc), HttpStatus.OK);
     }
 }

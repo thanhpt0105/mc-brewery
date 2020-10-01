@@ -18,4 +18,6 @@ public interface BeerService {
     BeerDto saveNewBeer(BeerDto beerDto);
     BeerDto updateBeer(UUID id, BeerDto beerDto);
     void deleteBeer(UUID id);
+
+    BeerDto getBeerByUpc(String upc);
 }

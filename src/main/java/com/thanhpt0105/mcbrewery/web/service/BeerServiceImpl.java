@@ -85,4 +85,10 @@ public class BeerServiceImpl implements BeerService {
     public void deleteBeer(UUID id) {
         log.info("delete beer " + id.toString());
     }
+
+    @Cacheable(cacheNames = "beerUpcCache")
+    @Override
+    public BeerDto getBeerByUpc(String upc) {
+        return beerMapper.beerToBeerDto(beerRepository.findByUpc(upc));
+    }
 }
